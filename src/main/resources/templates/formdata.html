@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Data</title>
+    <link rel="stylesheet" type="text/css" href="css/style2.css"> <!-- Koppel het CSS-bestand -->
+</head>
+<body>
+
+<h1>Submitted User Data</h1>
+<input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Search for names..">
+
+<table id="dataTable">
+    <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+    </tr>
+</table>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const dataTable = document.getElementById('dataTable');
+        const userDataForm = document.getElementById('userDataForm');
+
+        userDataForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(userDataForm);
+            const firstName = formData.get('fname');
+            const lastName = formData.get('lname');
+            const email = formData.get('email');
+            const newRow = dataTable.insertRow(-1);
+            const cell1 = newRow.insertCell(0);
+            const cell2 = newRow.insertCell(1);
+            const cell3 = newRow.insertCell(2);
+            cell1.textContent = firstName;
+            cell2.textContent = lastName;
+            cell3.textContent = email;
+            userDataForm.reset(); // Clear form fields after submission
+        });
+    });
+
+    function filterTable() {
+        const input = document.getElementById('searchInput');
+        const filter = input.value.toUpperCase();
+        const table = document.getElementById('dataTable');
+        const rows = table.getElementsByTagName('tr');
+
+        for (let i = 1; i < rows.length; i++) {
+            let row = rows[i];
+            let shouldHide = true;
+
+            for (let j = 0; j < row.cells.length; j++) {
+                let cell = row.cells[j];
+                if (cell) {
+                    let textValue = cell.textContent || cell.innerText;
+                    if (textValue.toUpperCase().indexOf(filter) > -1) {
+                        shouldHide = false;
+                        break;
+                    }
+                }
+            }
+
+            if (shouldHide) {
+                row.style.display = 'none';
+            } else {
+                row.style.display = '';
+            }
+        }
+    }
+</script>
+
+</body>
+</html>
