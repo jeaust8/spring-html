@@ -3,70 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>User Data</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 50%;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
 
-<h1>Submitted User Data</h1>
+<h1>User Data</h1>
 
-<table id="dataTable">
-    <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email</th>
-    </tr>
-</table>
-
-<h2>Enter User Data</h2>
-<form id="userDataForm">
-    <label for="firstname">First name</label><br/>
-    <input type="text" name="fname"/><br/>
-
-    <label for="lastname">Last name</label><br/>
-    <input type="text" name="lname"/><br/>
-
-    <label for="email">Email</label><br/>
-    <input type="email" name="email"/><br/>
-
-    <button type="submit">Submit</button>
+<form action="/search" method="get" id="searchForm">
+    <input type="text" id="searchInput" name="keyword" placeholder="Search by name or email">
+    <button type="submit">Search</button>
 </form>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const dataTable = document.getElementById('dataTable');
-        const userDataForm = document.getElementById('userDataForm');
-
-        userDataForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            const formData = new FormData(userDataForm);
-            const firstName = formData.get('fname');
-            const lastName = formData.get('lname');
-            const email = formData.get('email');
-            const newRow = dataTable.insertRow(-1);
-            const cell1 = newRow.insertCell(0);
-            const cell2 = newRow.insertCell(1);
-            const cell3 = newRow.insertCell(2);
-            cell1.textContent = firstName;
-            cell2.textContent = lastName;
-            cell3.textContent = email;
-            userDataForm.reset(); // Clear form fields after submission
-        });
-    });
-</script>
+<table>
+    <tr>
+        <th>Voornaam</th>
+        <th>Achternaam</th>
+        <th>E-mailadres</th>
+        <th>Telefoonnummer</th>
+    </tr>
+    <!-- Loop through users and display each user -->
+    <tr th:each="user : ${users}">
+        <td th:text="${user.fname}"></td>
+        <td th:text="${user.lname}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.phonenumber}"></td>
+    </tr>
+</table>
 
 </body>
 </html>

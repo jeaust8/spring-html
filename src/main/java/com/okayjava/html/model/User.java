@@ -6,7 +6,6 @@ import jakarta.persistence.*;
 @Table(name = "user_data")
 public class User {
 
-    //primary key
     @Id
     @GeneratedValue
     @Column(name = "SN")
@@ -18,6 +17,12 @@ public class User {
     private String lname;
     @Column(name = "email")
     private String email;
+    @Column(name = "phonenumber")
+    private String phonenumber;
+
+    public int getSn(){
+        return sn;
+    }
     public String getFname() {
         return fname;
     }
@@ -42,14 +47,22 @@ public class User {
         this.email = email;
     }
 
+    public String getPhonenumber() {
+        return phonenumber;
+    }
 
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
+    }
 
     @Override
     public String toString() {
         return "User{" +
-                "fname='" + fname + '\'' +
+                "sn='" + sn + '\'' +
+                ", fname='" + fname + '\'' +
                 ", lname='" + lname + '\'' +
                 ", email='" + email + '\'' +
+                ", phonenumber='" + phonenumber + '\'' +
                 '}';
     }
 }
