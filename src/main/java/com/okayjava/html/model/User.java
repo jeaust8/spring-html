@@ -8,8 +8,8 @@ public class User {
 
     @Id
     @GeneratedValue
-    @Column(name = "SN")
-    private int sn;
+    @Column(name = "userid")
+    private Long userId;
 
     @Column(name = "firstname")
     private String fname;
@@ -20,8 +20,11 @@ public class User {
     @Column(name = "phonenumber")
     private String phonenumber;
 
-    public int getSn(){
-        return sn;
+    @Column(name= "zipcode")
+    private String zipcode;
+
+    public Long getUserId(){
+        return userId;
     }
     public String getFname() {
         return fname;
@@ -55,14 +58,23 @@ public class User {
         this.phonenumber = phonenumber;
     }
 
+    public String getZipcode() {
+        return zipcode;
+    }
+
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
+    }
+
     @Override
     public String toString() {
         return "User{" +
-                "sn='" + sn + '\'' +
+                "userid='" + userId + '\'' +
                 ", fname='" + fname + '\'' +
                 ", lname='" + lname + '\'' +
                 ", email='" + email + '\'' +
                 ", phonenumber='" + phonenumber + '\'' +
+                ", zipcode'" + zipcode + '\'' +
                 '}';
     }
 }

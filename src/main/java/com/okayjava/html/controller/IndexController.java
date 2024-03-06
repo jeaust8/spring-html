@@ -1,6 +1,7 @@
 package com.okayjava.html.controller;
 
 import com.okayjava.html.model.User;
+import com.okayjava.html.service.UserService;
 import com.okayjava.html.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -59,10 +60,12 @@ public class IndexController {
 
         System.out.println(user.toString());
         //validate
+        System.out.println(user.getUserId());
         System.out.println(user.getFname());
         System.out.println(user.getLname());
         System.out.println(user.getEmail());
         System.out.println(user.getPhonenumber());
+        System.out.println(user.getZipcode());
 
         User user_instered = userrepo.save(user);
         model.addAttribute("Het is gelukt ", user_instered.getFname() + "!");

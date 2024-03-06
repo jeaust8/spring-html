@@ -20,6 +20,7 @@ function displaySearchResults(data) {
     tableBody.empty();
     data.forEach(function(user) {
         var row = '<tr>' +
+
             '<td>' + user.fname + '</td>' +
             '<td>' + user.lname + '</td>' +
             '<td>' + user.email + '</td>' +

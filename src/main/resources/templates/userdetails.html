@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        /* Stijl voor klikbare rijen */
+        tr:hover {
+            cursor: pointer;
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+
+<h1>User Details</h1>
+
+<table>
+    <tr>
+        <th>Voornaam</th>
+        <td th:text="${firstName}"></td>
+    </tr>
+    <tr>
+        <th>Achternaam</th>
+        <td th:text="${lastName}"></td>
+    </tr>
+    <tr>
+        <th>E-mailadres</th>
+        <td th:text="${email}"></td>
+    </tr>
+    <tr>
+        <th>Telefoonnummer</th>
+        <td th:text="${phoneNumber}"></td>
+    </tr>
+    <tr>
+        <th>Postcode</th>
+        <td th:text="${zipCode}"></td>
+    </tr>
+</table>
+
+<script th:inline="javascript">
+    /* Deze functie haalt de gebruikersgegevens op van de queryparameters in de URL */
+    function getUserDetailsFromURL() {
+        /*<![CDATA[*/
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const firstName = urlParams.get('firstName');
+        const lastName = urlParams.get('lastName');
+        const email = urlParams.get('email');
+        const phoneNumber = urlParams.get('phoneNumber');
+        const zipCode = urlParams.get('zipCode');
+
+        /* Vul de HTML-elementen met de opgehaalde gegevens */
+        document.getElementById("firstName").innerText = firstName;
+        document.getElementById("lastName").innerText = lastName;
+        document.getElementById("email").innerText = email;
+        document.getElementById("phoneNumber").innerText = phoneNumber;
+        document.getElementById("zipCode").innerText = zipCode;
+        /*]]>*/
+    }
+
+    /* Roep de functie aan om gebruikersgegevens op te halen zodra de pagina geladen is */
+    window.onload = function() {
+        getUserDetailsFromURL();
+    };
+
+    /* Functie om gebruikersdetails te openen wanneer er op een rij wordt geklikt */
+    function showUserDetails(userId, firstName, lastName, email, phoneNumber, zipCode) {
+        console.log("User ID clicked:", userId);
+        // Construct the URL with the user details
+        var url = '/user/details?userId=' + userId +
+            '&firstName=' + encodeURIComponent(firstName) +
+            '&lastName=' + encodeURIComponent(lastName) +
+            '&email=' + encodeURIComponent(email) +
+            '&phoneNumber=' + encodeURIComponent(phoneNumber) +
+            '&zipCode=' + encodeURIComponent(zipCode);
+        window.location.href = url;
+    }
+</script>
+
+</body>
+</html>
