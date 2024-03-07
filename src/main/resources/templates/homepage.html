@@ -3,16 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title>Main Page</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        h1, h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            background-color: #2ecc71; /* Limoengroene achtergrondkleur */
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #27ae60; /* Donkerdere limoengroene kleur bij hover-effect */
+        }
+    </style>
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
 
-<h1>Welcome to the Main Page</h1>
+<h1>Welkom op de hoofdpagina</h1>
 
 <h2>Ga naar nieuw formulier om een nieuw formulier aan te maken</h2></br>
-<h2>Of ga naar view forms om formulieren op te halen</h2>
-
 <button onclick="window.location.href = 'register';">Enter New Form</button>
+<h2>Of ga naar view forms om formulieren op te halen</h2>
 <button onclick="window.location.href = 'form';">View Forms</button>
 
 </body>

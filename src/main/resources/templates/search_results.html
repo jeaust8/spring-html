@@ -5,10 +5,32 @@
     <title>Search Results</title>
     <link rel="stylesheet" type="text/css" href="/styles.css">
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: white; /* Witte achtergrondkleur voor de pagina */
+            color: #333; /* Donkere tekstkleur */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #2ecc71; /* Limoengroene achtergrondkleur voor de tabel */
+            color: white; /* Witte tekstkleur voor de tabel */
+            margin-top: 20px; /* Ruimte boven de tabel toevoegen */
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #27ae60; /* Donkergroene achtergrondkleur voor de tabelkop */
+        }
         /* Stijl voor klikbare rijen */
         tr:hover {
             cursor: pointer;
-            background-color: #f5f5f5;
+            background-color: #1abc9c; /* Donkerdere limoengroene kleur voor hover-effect */
         }
     </style>
 </head>
@@ -22,7 +44,7 @@
         <th>E-mailadres</th>
         <th>Telefoonnummer</th>
     </tr>
-    <tr th:each="user : ${users}" onclick="showUserDetails('${user.userId}')">
+    <tr th:each="user : ${users}" th:onclick="'showUserDetails(\'' + ${user.userId} + '\')'">
         <td th:text="${user.userId}"></td>
         <td th:text="${user.fname}"></td>
         <td th:text="${user.lname}"></td>
@@ -31,10 +53,11 @@
     </tr>
 </table>
 
-<script>
+<script type="text/javascript">
     function showUserDetails(userId) {
         console.log("User ID clicked:", userId);
-        window.location.href = '/user/details?id=' + userId;
+        var url = '/user/details/' + userId;
+        window.location.href = url;
     }
 </script>
 

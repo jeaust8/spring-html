@@ -19,7 +19,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/user/details?id={userId}")
+    @GetMapping("/user/details/{userId}")
     public String showUserDetails(@PathVariable("userId") Long userId, Model model) {
         // Gebruikersgegevens ophalen op basis van userId
         User user = userService.getUserById(userId);

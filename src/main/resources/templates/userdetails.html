@@ -9,13 +9,18 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
+            background-color: white; /* Witte achtergrondkleur voor de pagina */
+            color: #333; /* Donkere tekstkleur */
         }
         h1 {
             margin-bottom: 20px;
+            color: #2ecc71; /* Limoengroene tekstkleur voor de kop */
         }
         table {
             width: 100%;
             border-collapse: collapse;
+            background-color: #2ecc71; /* Limoengroene achtergrondkleur voor de tabel */
+            color: white; /* Witte tekstkleur voor de tabel */
         }
         th, td {
             padding: 10px;
@@ -23,81 +28,60 @@
             border-bottom: 1px solid #ddd;
         }
         th {
-            background-color: #f2f2f2;
+            background-color: #27ae60; /* Donkergroene achtergrondkleur voor de tabelkop */
         }
         /* Stijl voor klikbare rijen */
         tr:hover {
             cursor: pointer;
-            background-color: #f5f5f5;
+            background-color: #1abc9c; /* Donkerdere limoengroene kleur voor hover-effect */
         }
     </style>
 </head>
 <body>
 
-<h1>User Details</h1>
+<h1>Gebruikersgegevens</h1>
 
 <table>
     <tr>
+        <th>Gebruikersnaam</th>
+        <td th:text="${user.username}"></td>
+    </tr>
+    <tr>
+        <th>Wachtwoord</th>
+        <td>&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;</td>
+    </tr>
+    <tr>
+        <th>Aanhef</th>
+        <td th:text="${user.gender}"></td>
+    </tr>
+    <tr>
         <th>Voornaam</th>
-        <td th:text="${firstName}"></td>
+        <td th:text="${user.fname}"></td>
     </tr>
     <tr>
         <th>Achternaam</th>
-        <td th:text="${lastName}"></td>
+        <td th:text="${user.lname}"></td>
     </tr>
     <tr>
         <th>E-mailadres</th>
-        <td th:text="${email}"></td>
+        <td th:text="${user.email}"></td>
     </tr>
     <tr>
         <th>Telefoonnummer</th>
-        <td th:text="${phoneNumber}"></td>
+        <td th:text="${user.phonenumber}"></td>
+    </tr>
+    <tr>
+        <th>Adres</th>
+        <td th:text="${user.address}"></td>
     </tr>
     <tr>
         <th>Postcode</th>
-        <td th:text="${zipCode}"></td>
+        <td th:text="${user.zipcode}"></td>
+    </tr>
+    <tr>
+        <th>Woonplaats</th>
+        <td th:text="${user.city}"></td>
     </tr>
 </table>
-
-<script th:inline="javascript">
-    /* Deze functie haalt de gebruikersgegevens op van de queryparameters in de URL */
-    function getUserDetailsFromURL() {
-        /*<![CDATA[*/
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
-        const firstName = urlParams.get('firstName');
-        const lastName = urlParams.get('lastName');
-        const email = urlParams.get('email');
-        const phoneNumber = urlParams.get('phoneNumber');
-        const zipCode = urlParams.get('zipCode');
-
-        /* Vul de HTML-elementen met de opgehaalde gegevens */
-        document.getElementById("firstName").innerText = firstName;
-        document.getElementById("lastName").innerText = lastName;
-        document.getElementById("email").innerText = email;
-        document.getElementById("phoneNumber").innerText = phoneNumber;
-        document.getElementById("zipCode").innerText = zipCode;
-        /*]]>*/
-    }
-
-    /* Roep de functie aan om gebruikersgegevens op te halen zodra de pagina geladen is */
-    window.onload = function() {
-        getUserDetailsFromURL();
-    };
-
-    /* Functie om gebruikersdetails te openen wanneer er op een rij wordt geklikt */
-    function showUserDetails(userId, firstName, lastName, email, phoneNumber, zipCode) {
-        console.log("User ID clicked:", userId);
-        // Construct the URL with the user details
-        var url = '/user/details?userId=' + userId +
-            '&firstName=' + encodeURIComponent(firstName) +
-            '&lastName=' + encodeURIComponent(lastName) +
-            '&email=' + encodeURIComponent(email) +
-            '&phoneNumber=' + encodeURIComponent(phoneNumber) +
-            '&zipCode=' + encodeURIComponent(zipCode);
-        window.location.href = url;
-    }
-</script>
-
 </body>
 </html>
