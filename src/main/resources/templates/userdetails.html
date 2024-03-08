@@ -35,6 +35,21 @@
             cursor: pointer;
             background-color: #1abc9c; /* Donkerdere limoengroene kleur voor hover-effect */
         }
+        /* Stijl voor bewerkbare cellen */
+        .editable {
+            cursor: pointer;
+        }
+        /* Stijl voor opslaan knop */
+        .save-button {
+            display: none;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -44,44 +59,94 @@
 <table>
     <tr>
         <th>Gebruikersnaam</th>
-        <td th:text="${user.username}"></td>
-    </tr>
-    <tr>
-        <th>Wachtwoord</th>
-        <td>&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;</td>
+        <td class="editable" id="username" th:text="${user.username}" onclick="editAttribute('username')"></td>
     </tr>
     <tr>
         <th>Aanhef</th>
-        <td th:text="${user.gender}"></td>
+        <td class="editable" id="gender" th:text="${user.gender}" onclick="editAttribute('gender')"></td>
     </tr>
     <tr>
         <th>Voornaam</th>
-        <td th:text="${user.fname}"></td>
+        <td class="editable" id="fname" th:text="${user.fname}" onclick="editAttribute('fname')"></td>
     </tr>
     <tr>
         <th>Achternaam</th>
-        <td th:text="${user.lname}"></td>
+        <td class="editable" id="lname" th:text="${user.lname}" onclick="editAttribute('lname')"></td>
     </tr>
     <tr>
         <th>E-mailadres</th>
-        <td th:text="${user.email}"></td>
+        <td class="editable" id="email" th:text="${user.email}" onclick="editAttribute('email')"></td>
     </tr>
     <tr>
         <th>Telefoonnummer</th>
-        <td th:text="${user.phonenumber}"></td>
+        <td class="editable" id="phonenumber" th:text="${user.phonenumber}" onclick="editAttribute('phonenumber')"></td>
     </tr>
     <tr>
         <th>Adres</th>
-        <td th:text="${user.address}"></td>
+        <td class="editable" id="address" th:text="${user.address}" onclick="editAttribute('address')"></td>
     </tr>
     <tr>
         <th>Postcode</th>
-        <td th:text="${user.zipcode}"></td>
+        <td class="editable" id="zipcode" th:text="${user.zipcode}" onclick="editAttribute('zipcode')"></td>
     </tr>
     <tr>
         <th>Woonplaats</th>
-        <td th:text="${user.city}"></td>
+        <td class="editable" id="city" th:text="${user.city}" onclick="editAttribute('city')"></td>
     </tr>
 </table>
+
+<button id="saveButton" class="save-button" onclick="saveChanges()">Opslaan</button>
+
+<script>
+    // Functie om velden te bewerken
+    function editAttribute(attribute) {
+        var newValue = prompt("Voer de nieuwe waarde in voor " + attribute + ":");
+        if (newValue !== null) {
+            document.getElementById('saveButton').style.display = 'block';
+            document.getElementById(attribute).innerText = newValue;
+        }
+    }
+
+    // Functie om wijzigingen op te slaan
+    function saveChanges() {
+        // Verzamel de gewijzigde gegevens
+        var updatedUserData = {
+            username: document.getElementById('username').innerText,
+            gender: document.getElementById('gender').innerText,
+            fname: document.getElementById('fname').innerText,
+            lname: document.getElementById('lname').innerText,
+            email: document.getElementById('email').innerText,
+            phonenumber: document.getElementById('phonenumber').innerText,
+            address: document.getElementById('address').innerText,
+            zipcode: document.getElementById('zipcode').innerText,
+            city: document.getElementById('city').innerText
+        };
+
+        // Stuur de gegevens naar de backend via een POST-verzoek
+        fetch('/update-user', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updatedUserData)
+        })
+            .then(response => {
+                // Controleer de status van het antwoord en handel dienovereenkomstig
+                if (response.ok) {
+                    // Gegevens succesvol bijgewerkt
+                    window.location.href = "/edit-success"; // Doorverwijzen naar de succespagina
+                } else {
+                    // Er is een fout opgetreden bij het bijwerken van de gegevens
+                    console.error('Er is een fout opgetreden bij het bijwerken van de gegevens.');
+                    // Mogelijkheid om een foutmelding aan de gebruiker weer te geven
+                }
+            })
+            .catch(error => {
+                // Vang fouten op die zijn opgetreden tijdens het verwerken van het verzoek
+                console.error('Er is een fout opgetreden:', error);
+                // Mogelijkheid om een foutmelding aan de gebruiker weer te geven
+            });
+    }
+</script>
 </body>
 </html>

@@ -5,9 +5,7 @@ import com.okayjava.html.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class UserController {
@@ -30,4 +28,12 @@ public class UserController {
         // Teruggeven van de naam van de HTML-template waarin je de gebruikersgegevens weergeeft
         return "userdetails";
     }
+
+        @PostMapping("/userdetails")
+        public String saveUserDetails(@ModelAttribute User user, Model model) {
+            // Voer hier de logica uit voor het opslaan van gebruikersdetails
+            userService.updateUser(user);
+            model.addAttribute("message", "Gebruikersgegevens succesvol bijgewerkt!");
+            return "userdetails";
+        }
 }

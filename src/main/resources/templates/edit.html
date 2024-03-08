@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gebruiker Bewerken</title>
+    <style>
+        /* CSS-stijlen blijven hetzelfde */
+
+        /* Voeg hier de CSS-stijlen voor het potloodicoontje toe */
+        .edit-icon {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background-image: url('path/to/pencil-icon.png'); /* Vervang 'path/to/pencil-icon.png' door het pad naar je potloodicoon */
+            background-size: cover;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Gebruikersgegevens Bewerken</h1>
+
+<table>
+    <tr>
+        <th>Gebruikersnaam</th>
+        <td>
+            <span id="username" onclick="editAttribute('username')">${user.username}</span>
+            <span class="edit-icon" onclick="editAttribute('username')"></span>
+        </td>
+    </tr>
+    <tr>
+        <th>Wachtwoord</th>
+        <td>&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;</td>
+    </tr>
+    <tr>
+        <th>Aanhef</th>
+        <td>
+            <span id="gender" onclick="editAttribute('gender')">${user.gender}</span>
+            <span class="edit-icon" onclick="editAttribute('gender')"></span>
+        </td>
+    </tr>
+    <tr>
+        <th>Voornaam</th>
+        <td>
+            <span id="fname" onclick="editAttribute('fname')">${user.fname}</span>
+            <span class="edit-icon" onclick="editAttribute('fname')"></span>
+        </td>
+    </tr>
+    <tr>
+        <th>Achternaam</th>
+        <td>
+            <span id="lname" onclick="editAttribute('lname')">${user.lname}</span>
+            <span class="edit-icon" onclick="editAttribute('lname')"></span>
+        </td>
+    </tr>
+    <tr>
+        <th>E-mailadres</th>
+        <td>
+            <span id="email" onclick="editAttribute('email')">${user.email}</span>
+            <span class="edit-icon" onclick="editAttribute('email')"></span>
+        </td>
+    </tr>
+    <tr>
+        <th>Telefoonnummer</th>
+        <td>
+            <span id="phonenumber" onclick="editAttribute('phonenumber')">${user.phonenumber}</span>
+            <span class="edit-icon" onclick="editAttribute('phonenumber')"></span>
+        </td>
+    </tr>
+    <tr>
+        <th>Adres</th>
+        <td>
+            <span id="address" onclick="editAttribute('address')">${user.address}</span>
+            <span class="edit-icon" onclick="editAttribute('address')"></span>
+        </td>
+    </tr>
+    <tr>
+        <th>Postcode</th>
+        <td>
+            <span id="zipcode" onclick="editAttribute('zipcode')">${user.zipcode}</span>
+            <span class="edit-icon" onclick="editAttribute('zipcode')"></span>
+        </td>
+    </tr>
+    <tr>
+        <th>Woonplaats</th>
+        <td>
+            <span id="city" onclick="editAttribute('city')">${user.city}</span>
+            <span class="edit-icon" onclick="editAttribute('city')"></span>
+        </td>
+    </tr>
+</table>
+
+<button class="save-button" onclick="saveChanges()">Opslaan</button>
+
+<script>
+    function editAttribute(attribute) {
+        var newValue = prompt("Voer de nieuwe waarde in voor " + attribute + ":");
+        if (newValue !== null) {
+            // Hier zou je logica toevoegen om de nieuwe waarde naar de server te sturen en op te slaan in de database
+            // In dit voorbeeld wordt de waarde alleen in de cel gewijzigd
+            document.getElementById(attribute).innerText = newValue;
+        }
+    }
+
+    function saveChanges() {
+        // Hier zou je logica toevoegen om alle gewijzigde waarden naar de server te sturen en op te slaan in de database
+        // Na het opslaan doorsturen naar de "edit success" pagina
+        window.location.href = "/edit-success"; // Hier wordt ervan uitgegaan dat de URL "/edit-success" de "edit success" pagina vertegenwoordigt
+    }
+</script>
+
+</body>
+</html>

@@ -28,6 +28,21 @@ public class IndexController {
         return "index";
     }
 
+    @GetMapping("/edit")
+    public String edit() {
+        return "edit";
+    }
+
+    @PostMapping("/edit")
+    public String saveEdit() {
+        return "edit-success";
+    }
+
+    @GetMapping("/edit-success")
+        public String editSuccess(){
+        return "edit-success";
+    }
+
     @GetMapping("/search")
     public String searchUsers(@RequestParam String keyword, Model model) {
         List<User> users = userrepo.findByFnameContainingOrLnameContainingOrEmailContainingOrPhonenumberContaining(keyword, keyword, keyword, keyword);
