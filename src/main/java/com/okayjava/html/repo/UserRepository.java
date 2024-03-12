@@ -9,6 +9,7 @@ import java.util.List;
 public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findByFnameContainingOrLnameContainingOrEmailContainingOrPhonenumberContaining(String fname, String lname, String email, String phonenumber);
 
+    boolean existsByUserId(Long userid);
     boolean existsByUsername(String username);
     boolean existsByEmail(String email);
 

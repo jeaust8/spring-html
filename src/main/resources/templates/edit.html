@@ -5,21 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gebruiker Bewerken</title>
     <style>
-        /* CSS-stijlen blijven hetzelfde */
-
-        /* Voeg hier de CSS-stijlen voor het potloodicoontje toe */
-        .edit-icon {
-            display: inline-block;
-            width: 16px;
-            height: 16px;
-            background-image: url('path/to/pencil-icon.png'); /* Vervang 'path/to/pencil-icon.png' door het pad naar je potloodicoon */
-            background-size: cover;
+        .save-button {
+            background-color: limegreen;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
+            font-size: 16px;
+        }
+        .save-button:hover {
+            background-color: lime;
         }
     </style>
 </head>
 <body>
-
 <h1>Gebruikersgegevens Bewerken</h1>
 
 <table>
@@ -32,7 +32,10 @@
     </tr>
     <tr>
         <th>Wachtwoord</th>
-        <td>&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;</td>
+        <td>
+            <span id="password" onclick="editAttribute('password')">${user.password}</span>
+            <span class="edit-icon" onclick="editAttribute('password')"></span>
+        </td>
     </tr>
     <tr>
         <th>Aanhef</th>
@@ -98,16 +101,41 @@
     function editAttribute(attribute) {
         var newValue = prompt("Voer de nieuwe waarde in voor " + attribute + ":");
         if (newValue !== null) {
-            // Hier zou je logica toevoegen om de nieuwe waarde naar de server te sturen en op te slaan in de database
-            // In dit voorbeeld wordt de waarde alleen in de cel gewijzigd
             document.getElementById(attribute).innerText = newValue;
         }
     }
 
     function saveChanges() {
-        // Hier zou je logica toevoegen om alle gewijzigde waarden naar de server te sturen en op te slaan in de database
-        // Na het opslaan doorsturen naar de "edit success" pagina
-        window.location.href = "/edit-success"; // Hier wordt ervan uitgegaan dat de URL "/edit-success" de "edit success" pagina vertegenwoordigt
+        var updatedUserData = {
+            username: document.getElementById('username').innerText,
+            password: document.getElementById('password').innerText,
+            gender: document.getElementById('gender').innerText,
+            fname: document.getElementById('fname').innerText,
+            lname: document.getElementById('lname').innerText,
+            email: document.getElementById('email').innerText,
+            phonenumber: document.getElementById('phonenumber').innerText,
+            address: document.getElementById('address').innerText,
+            zipcode: document.getElementById('zipcode').innerText,
+            city: document.getElementById('city').innerText
+        };
+
+        fetch('/edit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updatedUserData)
+        })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = "/edit-success";
+                } else {
+                    console.error('Er is een fout opgetreden bij het opslaan van de gegevens.');
+                }
+            })
+            .catch(error => {
+                console.error('Er is een fout opgetreden:', error);
+            });
     }
 </script>
 

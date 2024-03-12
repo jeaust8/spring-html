@@ -62,6 +62,10 @@
         <td class="editable" id="username" th:text="${user.username}" onclick="editAttribute('username')"></td>
     </tr>
     <tr>
+        <th>Wachtwoord</th>
+        <td class="editable" id="password" th:text="${user.password}" onclick="editAttribute('password')"></td>
+    </tr>
+    <tr>
         <th>Aanhef</th>
         <td class="editable" id="gender" th:text="${user.gender}" onclick="editAttribute('gender')"></td>
     </tr>
@@ -109,9 +113,11 @@
 
     // Functie om wijzigingen op te slaan
     function saveChanges() {
-        // Verzamel de gewijzigde gegevens
+
+        // Add password to updatedUserData
         var updatedUserData = {
             username: document.getElementById('username').innerText,
+            password: document.getElementById('password').innerText,
             gender: document.getElementById('gender').innerText,
             fname: document.getElementById('fname').innerText,
             lname: document.getElementById('lname').innerText,
@@ -123,7 +129,7 @@
         };
 
         // Stuur de gegevens naar de backend via een POST-verzoek
-        fetch('/update-user', {
+        fetch('/edit', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

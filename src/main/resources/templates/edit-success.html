@@ -33,13 +33,14 @@
 <div class="container">
     <h1>Gegevens succesvol opgeslagen</h1>
     <p>De wijzigingen in de gebruikersgegevens zijn succesvol opgeslagen.</p>
-    <button class="button" onclick="showUserDetails()">Bekijk gebruikersgegevens</button>
+    <button onclick="showUserDetails(userId)">Bekijk gebruikersgegevens</button>
 </div>
 
 <script type="text/javascript">
     function showUserDetails(userId) {
         var url = '/user/details/' + userId;
         window.location.href = url;
+
     }
 </script>
 
