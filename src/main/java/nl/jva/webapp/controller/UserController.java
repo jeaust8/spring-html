@@ -1,16 +1,14 @@
-package com.okayjava.html.controller;
+package nl.jva.webapp.controller;
 
-import com.okayjava.html.model.User;
-import com.okayjava.html.repo.UserRepository;
-import com.okayjava.html.service.UserService;
+import nl.jva.webapp.model.User;
+import nl.jva.webapp.repo.UserRepository;
+import nl.jva.webapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @Controller
 public class UserController {
@@ -28,7 +26,7 @@ public class UserController {
     public String showUserDetails(@PathVariable("userid") Long userId, Model model) {
         User user = userService.getUserById(userId);
         model.addAttribute("user", user);
-        return "userdetails";
+        return "userdetails_page";
     }
 
     @PostMapping("/user/details{userId}")
@@ -37,13 +35,13 @@ public class UserController {
         return ResponseEntity.ok("Gebruikersgegevens succesvol bijgewerkt");
     }
 
-    @GetMapping("/edit/{userId}")
-    public ModelAndView editUserPage(@PathVariable(name = "userId") Long userId){
-        ModelAndView modelAndView = new ModelAndView("edituser");
-        User user = userService.getUserById(userId);
-        modelAndView.addObject("user", user);
-        return modelAndView;
-    }
+//    @GetMapping("/edit/{userId}")
+//    public ModelAndView editUserPage(@PathVariable(name = "userId") Long userId){
+//        ModelAndView modelAndView = new ModelAndView("edituser");
+//        User user = userService.getUserById(userId);
+//        modelAndView.addObject("user", user);
+//        return modelAndView;
+//    }
 @PostMapping(path = "{userId}")
 @ResponseBody
     public String updateUser(@PathVariable("userId") User user){

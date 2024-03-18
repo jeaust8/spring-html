@@ -1,7 +1,7 @@
-package com.okayjava.html.service;
+package nl.jva.webapp.service;
 
-import com.okayjava.html.model.User;
-import com.okayjava.html.repo.UserRepository;
+import nl.jva.webapp.model.User;
+import nl.jva.webapp.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

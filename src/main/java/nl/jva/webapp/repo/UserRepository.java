@@ -1,6 +1,6 @@
-package com.okayjava.html.repo;
+package nl.jva.webapp.repo;
 
-import com.okayjava.html.model.User;
+import nl.jva.webapp.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

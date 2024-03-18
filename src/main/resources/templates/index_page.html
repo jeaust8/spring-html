@@ -3,58 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Registreren</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-            font-family: Arial, sans-serif;
-        }
-        form {
-            width: 400px;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            background-color: #fff;
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            margin-top: 20px; /* Toegevoegde afstand boven de titel */
-            color: #333;
-        }
-        label {
-            font-weight: bold;
-        }
-        input[type="text"],
-        input[type="email"],
-        input[type="tel"],
-        input[type="password"] {
-            width: calc(100% - 20px);
-            margin-bottom: 20px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        button[type="submit"] {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 4px;
-            background-color: #2ecc71;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        button[type="submit"]:hover {
-            background-color: #27ae60;
-        }
-    </style>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
+<div class="body-center">
 <form action="register" method="post">
     <h1>Registratieformulier</h1><br/>
 
@@ -96,5 +48,6 @@
     <button type="submit">Registreren</button>
 
 </form>
+</div>
 </body>
 </html>

@@ -4,53 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Details</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: white; /* Witte achtergrondkleur voor de pagina */
-            color: #333; /* Donkere tekstkleur */
-        }
-        h1 {
-            margin-bottom: 20px;
-            color: #2ecc71; /* Limoengroene tekstkleur voor de kop */
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: #2ecc71; /* Limoengroene achtergrondkleur voor de tabel */
-            color: white; /* Witte tekstkleur voor de tabel */
-        }
-        th, td {
-            padding: 10px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        th {
-            background-color: #27ae60; /* Donkergroene achtergrondkleur voor de tabelkop */
-        }
-        /* Stijl voor klikbare rijen */
-        tr:hover {
-            cursor: pointer;
-            background-color: #1abc9c; /* Donkerdere limoengroene kleur voor hover-effect */
-        }
-        /* Stijl voor bewerkbare cellen */
-        .editable {
-            cursor: pointer;
-        }
-        /* Stijl voor opslaan knop */
-        .save-button {
-            display: none;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
 
@@ -102,19 +56,8 @@
 <button id="saveButton" class="save-button" onclick="saveChanges()">Opslaan</button>
 
 <script>
-    // Functie om velden te bewerken
-    function editAttribute(attribute) {
-        var newValue = prompt("Voer de nieuwe waarde in voor " + attribute + ":");
-        if (newValue !== null) {
-            document.getElementById('saveButton').style.display = 'block';
-            document.getElementById(attribute).innerText = newValue;
-        }
-    }
-
     // Functie om wijzigingen op te slaan
     function saveChanges() {
-
-        // Add password to updatedUserData
         var updatedUserData = {
             username: document.getElementById('username').innerText,
             password: document.getElementById('password').innerText,
@@ -140,7 +83,7 @@
                 // Controleer de status van het antwoord en handel dienovereenkomstig
                 if (response.ok) {
                     // Gegevens succesvol bijgewerkt
-                    window.location.href = "/edit-success"; // Doorverwijzen naar de succespagina
+                    window.location.href = "/edit_success_page"; // Doorverwijzen naar de succespagina
                 } else {
                     // Er is een fout opgetreden bij het bijwerken van de gegevens
                     console.error('Er is een fout opgetreden bij het bijwerken van de gegevens.');
@@ -153,6 +96,16 @@
                 // Mogelijkheid om een foutmelding aan de gebruiker weer te geven
             });
     }
+
+    // Functie om velden te bewerken
+    function editAttribute(attribute) {
+        var newValue = prompt("Voer de nieuwe waarde in voor " + attribute + ":");
+        if (newValue !== null) {
+            document.getElementById('saveButton').style.display = 'block';
+            document.getElementById(attribute).innerText = newValue;
+        }
+    }
 </script>
+
 </body>
 </html>

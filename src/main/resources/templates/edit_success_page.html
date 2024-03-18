@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Success</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<div class="body-center">
+    <h1>Opslaan gelukt!</h1>
+    <p>De wijzigingen in de gebruikersgegevens zijn succesvol opgeslagen!</p>
+    <button onclick="goToHomepage()">Terug naar startpagina</button>
+</div>
+
+<script type="text/javascript">
+    function goToHomepage() {
+        window.location.href = "/"; // Verander de URL naar de homepage
+    }
+</script>
+</div>
+</body>
+</html>

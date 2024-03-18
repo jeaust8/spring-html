@@ -1,7 +1,7 @@
 // UserService.java
-package com.okayjava.html.service;
+package nl.jva.webapp.service;
 
-import com.okayjava.html.model.User;
+import nl.jva.webapp.model.User;
 
 public interface UserService {
     User getUserById(Long userId);
