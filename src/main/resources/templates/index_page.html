@@ -45,7 +45,16 @@
     <label for="password">Wachtwoord: </label><br/>
     <input type="password" name="password" required/> <br/>
 
+
+    <button onclick="goToHomepage()">Terug</button>
+
     <button type="submit">Registreren</button>
+
+        <script type="text/javascript">
+            function goToHomepage() {
+                window.location.href = "/home"; // Verander de URL naar de homepage
+            }
+        </script>
 
 </form>
 </div>

@@ -54,12 +54,22 @@
 </head>
 <body>
 <div class="body-center">
-<h1>Zoeken</h1>
+<h1>Gebruikers zoeken</h1>
 
 <form action="/search" method="get" id="searchForm">
-    <input type="text" id="searchInput" name="keyword" placeholder="Search by name or email">
-    <button type="submit">Search</button>
+    <input type="text" id="searchInput" name="keyword" placeholder="Zoek bijv. op naam of e-mailadres">
+
+    <button type="submit">Zoeken</button>
+
 </form>
+
+    <button onclick="goToHomepage()">Terug naar de startpagina</button>
+
+    <script type="text/javascript">
+        function goToHomepage() {
+            window.location.href = "/home"; // Verander de URL naar de homepage
+        }
+    </script>
 
 <table>
 <!--    <tr>-->

@@ -16,7 +16,7 @@ public class IndexController {
     @Autowired
     private UserRepository userrepo;
 
-    @GetMapping("/")
+    @GetMapping("/home")
     public String homepage(){
         return "home_page";
     }

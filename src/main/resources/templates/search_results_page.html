@@ -4,35 +4,6 @@
     <meta charset="UTF-8">
     <title>Search Results</title>
     <link rel="stylesheet" th:href="@{css/styles.css}">
-<!--    <style>-->
-<!--        body {-->
-<!--            font-family: Arial, sans-serif;-->
-<!--            margin: 0;-->
-<!--            padding: 20px;-->
-<!--            background-color: white; /* Witte achtergrondkleur voor de pagina */-->
-<!--            color: #333; /* Donkere tekstkleur */-->
-<!--        }-->
-<!--        table {-->
-<!--            width: 100%;-->
-<!--            border-collapse: collapse;-->
-<!--            background-color: #2ecc71; /* Limoengroene achtergrondkleur voor de tabel */-->
-<!--            color: white; /* Witte tekstkleur voor de tabel */-->
-<!--            margin-top: 20px; /* Ruimte boven de tabel toevoegen */-->
-<!--        }-->
-<!--        th, td {-->
-<!--            padding: 10px;-->
-<!--            text-align: left;-->
-<!--            border-bottom: 1px solid #ddd;-->
-<!--        }-->
-<!--        th {-->
-<!--            background-color: #27ae60; /* Donkergroene achtergrondkleur voor de tabelkop */-->
-<!--        }-->
-<!--        /* Stijl voor klikbare rijen */-->
-<!--        tr:hover {-->
-<!--            cursor: pointer;-->
-<!--            background-color: #1abc9c; /* Donkerdere limoengroene kleur voor hover-effect */-->
-<!--        }-->
-<!--    </style>-->
 </head>
 <body>
 <div class="body-center">
@@ -51,7 +22,9 @@
         <td th:text="${user.email}"></td>
         <td th:text="${user.phonenumber}"></td>
     </tr>
-</table>
+</table><br/>
+
+    <button onclick="formData()">Terug naar zoeken</button>
 
 <script type="text/javascript">
     function showUserDetails(userId) {
@@ -60,6 +33,13 @@
         window.location.href = url;
     }
 </script>
+
+    <script type="text/javascript">
+        function formData() {
+            window.location.href = "/form"; // Verander de URL naar de homepage
+        }
+    </script>
+
 </div>
 </body>
 </html>
