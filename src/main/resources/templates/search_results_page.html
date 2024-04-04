@@ -2,11 +2,15 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Search Results</title>
+    <title>Zoekresultaten</title>
     <link rel="stylesheet" th:href="@{css/styles.css}">
 </head>
 <body>
-<div class="body-center">
+
+<div class="body-left">
+    <button onclick="formData()">Terug naar zoeken</button>
+</div>
+
 <table id="userData">
     <tr>
         <th>UserId</th>
@@ -24,7 +28,9 @@
     </tr>
 </table><br/>
 
-    <button onclick="formData()">Terug naar zoeken</button>
+<div class="body-center">
+    <!-- Hier kan je andere elementen toevoegen binnen de body-center div -->
+</div>
 
 <script type="text/javascript">
     function showUserDetails(userId) {
@@ -34,12 +40,11 @@
     }
 </script>
 
-    <script type="text/javascript">
-        function formData() {
-            window.location.href = "/form"; // Verander de URL naar de homepage
-        }
-    </script>
+<script type="text/javascript">
+    function formData() {
+        window.location.href = "/form"; // Verander de URL naar de homepage
+    }
+</script>
 
-</div>
 </body>
 </html>

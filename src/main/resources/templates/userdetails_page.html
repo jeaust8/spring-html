@@ -8,6 +8,14 @@
 </head>
 <body>
 
+<button onclick="searchUsers()">Terug</button>
+
+<script type="text/javascript">
+    function searchUsers() {
+        window.location.href = "/search?keyword="; // Verander de URL naar de homepage
+    }
+</script>
+
 <h1>Gebruikersgegevens</h1>
 
 <table>
@@ -51,15 +59,7 @@
         <th>Woonplaats</th>
         <td class="editable" id="city" th:text="${user.city}" onclick="editAttribute('city')"></td>
     </tr>
-</table>
-
-<button onclick="searchUsers()">Terug</button>
-
-<script type="text/javascript">
-    function searchUsers() {
-        window.location.href = "/search?keyword="; // Verander de URL naar de homepage
-    }
-</script>
+</table><br/>
 
 <button id="saveButton" class="save-button" onclick="saveChanges()">Opslaan</button>
 

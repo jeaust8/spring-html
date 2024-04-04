@@ -9,6 +9,16 @@ body {
     background-color: white; /* Witte achtergrondkleur voor de pagina */
     color: #333; /* Donkere tekstkleur */
 }
+.body-left {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
 .body-center {
     display: flex;
     justify-content: center;
@@ -34,6 +44,7 @@ input{
     font-size: 16px;
 }
 button{
+    margin-top: 20px;
     padding: 10px 20px;
     font-size: 16px;
     border: none;
