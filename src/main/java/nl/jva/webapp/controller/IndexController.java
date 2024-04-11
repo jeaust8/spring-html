@@ -31,26 +31,6 @@ public class IndexController {
         return "edit_success_page";
     }
 
-//    @PostMapping("/edit")
-//    public String saveEdit(@ModelAttribute User user) {
-//        try {
-//            System.out.println(user.toString()); // Controleer of de gebruiker correct wordt ontvangen
-//            User daoUser = userrepo.findById(user.getUserId()).orElse(null); // Gebruiker ophalen uit de database
-//            if (daoUser != null) {
-//                daoUser.updateUser(user); // Gebruiker bijwerken met de nieuwe gegevens
-//                userrepo.save(daoUser); // Opslaan van de bijgewerkte gebruiker in de database
-//                return "edit-success"; // Terugkeren naar de succesvolle bewerkingsweergave
-//            } else {
-//                // Gebruiker niet gevonden, mogelijk moet je een foutmelding weergeven aan de gebruiker
-//                return "error-page"; // Terugkeren naar een foutpagina
-//            }
-//        } catch (Exception e) {
-//            // Exception handling - Mogelijk moet je een foutmelding weergeven aan de gebruiker
-//            e.printStackTrace();
-//            return "error-page"; // Terugkeren naar een foutpagina
-//        }
-//    }
-
     @GetMapping("/edit_success_page")
         public String editSuccess(){
         return "edit_success_page";
@@ -72,12 +52,7 @@ public class IndexController {
     @PostMapping("/register")
     public String userRegistration(@ModelAttribute User user, Model model){
 
-        // Check of het telefoonnummer al bestaat in de database
-        if (userrepo.existsByUsername(user.getUsername())) {
-            // Telefoonnummer bestaat al, geef een foutmelding terug
-            model.addAttribute("error", "Deze gebruikersnaam is reeds in gebruik. Kies een andere gebruikersnaam.");
-            return "error_page"; // Maak een Thymeleaf-template genaamd "error_page.html" voor het weergeven van foutmeldingen
-        }
+
 
         // Check of het e-mailadres al bestaat in de database
         if (userrepo.existsByEmail(user.getEmail())) {
@@ -90,6 +65,13 @@ public class IndexController {
         if (userrepo.existsByPhonenumber(user.getPhonenumber())) {
             // Telefoonnummer bestaat al, geef een foutmelding terug
             model.addAttribute("error", "Dit telefoonnummer is al geregistreerd. Gebruik een ander telefoonnummer.");
+            return "error_page"; // Maak een Thymeleaf-template genaamd "error_page.html" voor het weergeven van foutmeldingen
+        }
+
+        // Check of de gebruikersnaam al bestaat in de database
+        if (userrepo.existsByUsername(user.getUsername())) {
+            // Gebruikersnaam bestaat al, geef een foutmelding terug
+            model.addAttribute("error", "Deze gebruikersnaam is reeds in gebruik. Kies een andere gebruikersnaam.");
             return "error_page"; // Maak een Thymeleaf-template genaamd "error_page.html" voor het weergeven van foutmeldingen
         }
 

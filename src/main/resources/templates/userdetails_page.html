@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Details</title>
+    <title>Gebruikersgegevens</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
@@ -17,15 +17,12 @@
 </script>
 
 <h1>Gebruikersgegevens</h1>
+<h2>(Klik op de gegevens in de groene kolom om deze te wijzigen)</h2>
 
 <table>
     <tr>
         <th>Gebruikersnaam</th>
         <td class="editable" id="username" th:text="${user.username}" onclick="editAttribute('username')"></td>
-    </tr>
-    <tr>
-        <th>Wachtwoord</th>
-        <td class="editable" id="password" th:text="${user.password}" onclick="editAttribute('password')"></td>
     </tr>
     <tr>
         <th>Aanhef</th>
@@ -68,7 +65,6 @@
     function saveChanges() {
         var updatedUserData = {
             username: document.getElementById('username').innerText,
-            password: document.getElementById('password').innerText,
             gender: document.getElementById('gender').innerText,
             fname: document.getElementById('fname').innerText,
             lname: document.getElementById('lname').innerText,

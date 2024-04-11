@@ -8,28 +8,23 @@
 <body>
 
 <div class="body-left">
+    <table id="userData">
+        <tr>
+            <th>UserId</th>
+            <th>Voornaam</th>
+            <th>Achternaam</th>
+            <th>E-mailadres</th>
+            <th>Telefoonnummer</th>
+        </tr>
+        <tr th:each="user : ${users}" th:onclick="'showUserDetails(\'' + ${user.userId} + '\')'">
+            <td th:text="${user.userId}"></td>
+            <td th:text="${user.fname}"></td>
+            <td th:text="${user.lname}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.phonenumber}"></td>
+        </tr>
+    </table><br/>
     <button onclick="formData()">Terug naar zoeken</button>
-</div>
-
-<table id="userData">
-    <tr>
-        <th>UserId</th>
-        <th>Voornaam</th>
-        <th>Achternaam</th>
-        <th>E-mailadres</th>
-        <th>Telefoonnummer</th>
-    </tr>
-    <tr th:each="user : ${users}" th:onclick="'showUserDetails(\'' + ${user.userId} + '\')'">
-        <td th:text="${user.userId}"></td>
-        <td th:text="${user.fname}"></td>
-        <td th:text="${user.lname}"></td>
-        <td th:text="${user.email}"></td>
-        <td th:text="${user.phonenumber}"></td>
-    </tr>
-</table><br/>
-
-<div class="body-center">
-    <!-- Hier kan je andere elementen toevoegen binnen de body-center div -->
 </div>
 
 <script type="text/javascript">
