@@ -23,7 +23,7 @@ public class IndexController {
 
     @GetMapping("/register")
     public String index(){
-        return "index_page";
+        return "register_page";
     }
 
     @PostMapping("/edit")
@@ -43,9 +43,9 @@ public class IndexController {
         return "search_results_page"; // Creëer een nieuw Thymeleaf-template genaamd "search_results_page.html"
     }
 
-    @GetMapping("/form")
+    @GetMapping("/search_form")
     public String formData() {
-        return "form_data";
+        return "search_page";
     }
 
 

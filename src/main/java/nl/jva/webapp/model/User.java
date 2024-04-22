@@ -151,5 +151,5 @@ public class User {
         this.address = user.address;
         this.zipcode = user.zipcode;
         this.city = user.city;
-    }
+    } //In deze build wordt deze functionaliteit niet toegepast. Voor een latere build zouden gebruikersgegevens hiermee aangepast kunnen worden.
 }
