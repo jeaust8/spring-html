@@ -25,11 +25,4 @@ public class UserController {
         model.addAttribute("user", user);
         return "userdetails_page";
     }
-
-//    @PostMapping("/user/details{userId}")
-//    public ResponseEntity<String> updateUserDetails(@RequestBody User user) {
-//        userService.updateUser(user);
-//        return ResponseEntity.ok("Gebruikersgegevens succesvol bijgewerkt"); // Dummy-functionaliteit
-//    }
-
 }

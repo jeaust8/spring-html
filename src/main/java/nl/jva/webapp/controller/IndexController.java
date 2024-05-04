@@ -40,7 +40,7 @@ public class IndexController {
     public String searchUsers(@RequestParam String keyword, Model model) {
         List<User> users = userrepo.findByFnameContainingOrLnameContainingOrEmailContainingOrPhonenumberContaining(keyword, keyword, keyword, keyword);
         model.addAttribute("users", users);
-        return "search_results_page"; // Creëer een nieuw Thymeleaf-template genaamd "search_results_page.html"
+        return "search_results_page";
     }
 
     @GetMapping("/search_form")
@@ -58,36 +58,35 @@ public class IndexController {
         if (userrepo.existsByEmail(user.getEmail())) {
             // E-mailadres bestaat al, geef een foutmelding terug
             model.addAttribute("error", "Dit e-mailadres is al geregistreerd. Gebruik een ander e-mailadres.");
-            return "error_page"; // Maak een Thymeleaf-template genaamd "error_page.html" voor het weergeven van foutmeldingen
+            return "error_page";
         }
 
         // Check of het telefoonnummer al bestaat in de database
         if (userrepo.existsByPhonenumber(user.getPhonenumber())) {
             // Telefoonnummer bestaat al, geef een foutmelding terug
             model.addAttribute("error", "Dit telefoonnummer is al geregistreerd. Gebruik een ander telefoonnummer.");
-            return "error_page"; // Maak een Thymeleaf-template genaamd "error_page.html" voor het weergeven van foutmeldingen
+            return "error_page";
         }
 
         // Check of de gebruikersnaam al bestaat in de database
         if (userrepo.existsByUsername(user.getUsername())) {
             // Gebruikersnaam bestaat al, geef een foutmelding terug
             model.addAttribute("error", "Deze gebruikersnaam is reeds in gebruik. Kies een andere gebruikersnaam.");
-            return "error_page"; // Maak een Thymeleaf-template genaamd "error_page.html" voor het weergeven van foutmeldingen
+            return "error_page";
         }
 
         // Sla de gebruiker op in de database
         User savedUser = userrepo.save(user);
 
-        // Haal de gegenereerde ID op uit de opgeslagen gebruiker
         Long userId = savedUser.getUserId();
 
-        // Voeg de gegenereerde ID toe aan het model
+
         model.addAttribute("userId", userId);
 
         model.addAttribute("voornaam", savedUser.getFname() + "!");
         model.addAttribute("message", "Uw gegevens met e-mailadres " + savedUser.getEmail() + " zijn opgeslagen!");
-        // Geef de gebruiker door naar de registratiesuccess-pagina
-        return "success_page"; // Maak een Thymeleaf-template genaamd "success_page.html" voor de succesvolle registratiepagina
+
+        return "success_page";
     }}
 
 
